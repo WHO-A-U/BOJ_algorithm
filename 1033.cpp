@@ -7,20 +7,23 @@ using namespace std;
 vector<pair<int,pair<int,int>>>v[11];
 long long d[11][2];//[i][0]//분자 [i][1] 분모
 bool visit[11];
-long long gcd(long long a,long long b){
-    if(a<b)
-    {
-        long long tmp=a;
-        a=b;
-        b=tmp;
-    }
-    long long r;
-    while(b!=0){
-        r=a%b;
-        a=b;
-        b=r;
+void swap(long long& a, long long& b){
+    long long temp = a;
+    a = b;
+    b = temp;
+}
+ 
+long long gcd(long long a, long long b){
+    if (a < b) swap(a, b);
+    while (!b == 0){
+        int r = a % b;
+        a = b;
+        b = r;
     }
     return a;
+}
+long long lcm(long long a,long long b){
+    return (a*b)/gcd(a,b);
 }
 int main(){
     int n,a,b,p,q;
@@ -37,7 +40,6 @@ int main(){
     visit[0]=true;
     while(!que.empty()){
         int cur = que.front();
-        // cout<<cur<<" ";
         que.pop();
         for(int i=0;i<v[cur].size();i++){
             int next = v[cur][i].first;
@@ -59,49 +61,26 @@ int main(){
         d[i][0]/=tmp;
         d[i][1]/=tmp;
     }
-    // cout<<endl;   
-    // for(int i=0;i<n;i++)
-    //     cout<<d[i][0]<<" ";
-    // cout<<endl;   
-    // for(int i=0;i<n;i++)
-    //     cout<<d[i][1]<<" ";
-    // cout<<endl;
-    long long G=d[0][1];
+    long long tmp=d[0][0];
+    for(int i=1;i<n;i++)
+        tmp=gcd(tmp,d[i][0]);
+    for(int i=0;i<n;i++)
+        d[i][0]/=tmp;
+    long long G;
+    long long L=d[0][1];
     for(int i=0;i<n;i++){
-        G=gcd(d[i][1],G);
+        L=lcm(L,d[i][1]);
     }
-    // cout<<"1 !"<<G<<"!!\n";
-    long long L=1;
     for(int i=0;i<n;i++){
-        L*=(d[i][1]/G);
+        d[i][0]*=(L/d[i][1]);
     }
-    // cout<<"L !"<<L<<"!!\n";
-    for(int i=0;i<n;i++){
-        d[i][0]=d[i][0]*(L/d[i][1]);
-    }
-    // cout<<endl;   
-    // for(int i=0;i<n;i++)
-    //     cout<<d[i][0]<<" ";
-    // cout<<endl;   
-    // for(int i=0;i<n;i++)
-    //     cout<<d[i][1]<<" ";
-    // cout<<endl;
     G=d[0][0];
     for(int i=0;i<n;i++){
-        
         G=gcd(d[i][0],G);
-        // cout<<i<<"!for!"<<G<<"!!\n";
     }
-    
-    // cout<<"3 !"<<G<<"!!\n";
     for(int i=0;i<n;i++){
         d[i][0]=d[i][0]/G;
     }
-    // cout<<"d[i][0]\n";
-    // for(int i=0;i<n;i++){
-    //     cout<<d[i][0]<<" ";
-    // }
-    // cout<<endl;
     for(int i=0;i<n;i++){
         cout<<d[i][0]<<" ";
     }
