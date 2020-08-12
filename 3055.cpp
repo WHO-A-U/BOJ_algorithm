@@ -92,13 +92,6 @@ int main(){
         }
     }
     vision();
-    // for(int i=0;i<r;i++){
-    //     for(int j=0;j<c;j++){
-    //         // maxtime=max(maxtime,d[i][j]);
-    //         cout<<d[i][j]<<" ";
-    //     }
-    //     cout<<endl;
-    // }
     int ans=isPossible();
     if(ans==-1){
         cout<<"KAKTUS";
