@@ -1,5 +1,7 @@
 *.exe
 *.txt
 test.cpp
-tempCodeRunnerFile.cpp
 .vscode/settings.json
+tempCodeRunnerFile.cpp
+k.cpp
+T.cpp
