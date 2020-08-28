@@ -5,6 +5,7 @@
         "vector": "cpp",
         "utility": "cpp",
         "xstring": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "deque": "cpp"
     }
 }
