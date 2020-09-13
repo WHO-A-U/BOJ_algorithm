@@ -6,6 +6,7 @@
         "utility": "cpp",
         "vector": "cpp",
         "string": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "xiosbase": "cpp"
     }
 }
