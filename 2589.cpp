@@ -20,7 +20,7 @@ int findLongPath(int row,int col){
     while(!q.empty()){
         int cr=q.front().first;
         int cc=q.front().second;
-        int cur=d[cr][cc];
+        int cur=v[cr][cc];
         cnt=max(cnt,cur);
         q.pop();
         for(int i=0;i<4;i++){
@@ -37,19 +37,13 @@ int findLongPath(int row,int col){
         }
     }
     return cnt;
-//     5 7                            
-// WLLWWWL
-// LLLWLLL
-// LWLWLWW
-// LWLWLLL
-// WLLWLWW
 }
 int main() {
     string str;
     cin>>n>>m;
     for(int i=0;i<n;i++){
         cin>>str;
-        for(int j=0;j<m;i++){
+        for(int j=0;j<m;j++){
             d[i][j]=str[j];
         }
     }
