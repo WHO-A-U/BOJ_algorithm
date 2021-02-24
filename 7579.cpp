@@ -1,11 +1,12 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
+#include<queue>
+#include<map>
 #include<cstring>
 using namespace std;
-vector<pair<int,int>> v;
-int n,m,minval=0x3f3f3f3f;
-int d[101][10101];
+int n,m;
+int d[10001];
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
@@ -18,17 +19,46 @@ int main(){
     for(int i=0;i<n;i++){
         cin>>cost[i];
     }
-    d[0][cost[0]]=memory[0];
-    for(int i=1;i<n;i++){
-        for(int j=0;j<10001;j++){
-            if(j-cost[i]>=0){
-                d[i][j]=max(d[i][j],d[i-1][j-cost[i]]+memory[i]);
+    
+    queue<pair<int,int>> q;
+    map<int,int>::iterator it;
+    q.push({0,0});
+    for(int i=0;i<n;i++){
+        map<int,int> dict;
+        dict[0]=max(0,dict[0]);
+        while(!q.empty()){
+            int cur = q.front().first;
+            int mem = q.front().second;
+            q.pop();
+            int next = cur+cost[i];
+            int nextMem = mem+memory[i];
+            if(dict.find(cur)==dict.end()){
+                dict[cur]=mem;
+            }else{
+                if(dict[cur]<mem){
+                    dict[cur] = mem;
+                }
             }
-            d[i][j]=max(d[i][j],d[i-1][j]);
-            if(d[i][j]>=m){
-                minval=min(minval,j);
+            if(dict.find(next)==dict.end()){
+                dict[next]=nextMem;
+            }else{
+                if(dict[next]<nextMem){
+                    dict[next] = nextMem;
+                }
             }
         }
+        for(it = dict.begin();it!=dict.end();it++){
+            if(d[it->first]<it->second){
+                d[it->first]=it->second;
+            }
+            q.push({it->first,d[it->first]});
+        }
+        
     }
-    cout<<minval;
+    for(int i=0;i<10001;i++){
+        if(d[i]>=m){
+            cout<<i;
+            break;
+        }
+    }
 }
