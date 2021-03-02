@@ -1,14 +1,16 @@
 #include<bits/stdc++.h>
 using namespace std;
+int d[10];
 int main(){
-  int n=0,a,idx;
-  for(int i=1;i<=9;i++){
-      cin>>a;
-      if(n<a){
-          n=a;
-          idx=i;
-      }
+  int a,b,c;
+  cin>>a>>b>>c;
+  int n = a*b*c;
+  while(n!=0){
+      d[n%10]++;
+      n/=10;
   }
-  cout<<n<<"\n"<<idx;
+  for(int i=0;i<10;i++){
+      cout<<d[i]<<"\n";
+  }
 }
 
