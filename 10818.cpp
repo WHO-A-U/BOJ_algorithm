@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int main(){
-    int n,a,minA=0x3f3f3f3f,maxA=0;
+    int n,a,minA=0x3f3f3f3f,maxA=-minA;
     cin>>n;
     for(int i=0;i<n;i++){
         cin>>a;
