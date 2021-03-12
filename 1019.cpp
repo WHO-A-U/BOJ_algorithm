@@ -23,54 +23,48 @@ using vvpii = vector<vpii>;
 using vvpll = vector<vpll>;
 using vvs = vector<vs>;
 
-vll d[10][10]; // 자릿수  , 값  
-void sumArr(vll &a , vll &b){
-    for(int i=0;i<a.size();i++){
-        a[i]+=b[i];
+ll ans[10];
+void getSum(int x,int point){
+    while(x>0){
+        ans[x%10]+=point;
+        x/=10;
     }
-    return ;
 }
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
-    
 
-    for(int i=0;i<10;i++){
-        for(int j=0;j<10;j++){
-            d[i][j].assign(10,0);
+    int page ;
+    int idx =1 , start=1;
+    cin>>page;
+
+    while (start <= page) {
+
+        while (page % 10 != 9 && start <= page) {
+            getSum(page,  idx);
+            page--;
         }
-    }
-    
-    for(int i=1;i<10;i++){
-        d[0][i][i]=1;
-    }
 
-
-    for(int i=1;i<10;i++){
-        for(int j=0;j<10;j++){
-            for(int k=0;k<10;k++){
-                sumArr(d[i][j],d[i-1][k]);
-            }
-            if(j==0){
-                d[i][j][1]++;
-            }
-            d[i][j][0]+=(i-1)+1;
-            if(j!=0){
-                d[i][j][j]+=pow(10LL,i)-1;
-                d[i][j][(j+1)%10]++;
-            }
-            if(j==9){
-                d[i][j][1]++;
-                // d[i][j][0]+=(i-1)+1;
-            }
+        if (page < start) {
+            break;
         }
-    }
 
-    for(int i=0;i<10;i++){
-        for(int j=0;j<10;j++){
-            cout<<d[2][i][j]<<" ";
+        while (start % 10 != 0 && start <= page) {
+            getSum(start,  idx);
+            start++;
         }
-        cout<<"\n";
+
+        start /= 10;
+        page /= 10;
+
+        for (int i = 0; i < 10; i++) {
+            ans[i] += (page - start + 1) * idx;
+        }
+
+        idx *= 10;
     }
     
+        for (int i = 0; i < 10; i++) {
+            cout<<ans[i]<<" ";
+        }
 }
