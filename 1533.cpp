@@ -6,22 +6,8 @@
 #define all(x) (x).begin(), (x).end()
 using namespace std;
 using ll = long long;
-using pii = pair<int, int>;
-using pll = pair<ll, ll>;
-using vi = vector<int>;
-using vb = vector<bool>;
-using vs = vector<string>;
-using vd = vector<double>;
 using vll = vector<ll>;
-using vpii = vector<pii>;
-using vpll = vector<pll>;
-using vvi = vector<vi>;
-using vvb = vector<vb>;
-using vvll = vector<vll>;
-using vvpii = vector<vpii>;
-using vvpll = vector<vpll>;
-using vvs = vector<vs>;
-using matrix = vvll;
+using matrix = vector<vll>;
 matrix operator * (const matrix &a , const matrix &b){
     int n = a.size();
     matrix ret(n,vll(n));
