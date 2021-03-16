@@ -1,25 +1,7 @@
 #include <bits/stdc++.h>
-#define INF 0x3f3f3f3f
-#define ft first
-#define sd second
-#define all(x) (x).begin(), (x).end()
 using namespace std;
-using ll = long long;
-using pii = pair<int, int>;
-using pll = pair<ll, ll>;
 using vi = vector<int>;
-using vb = vector<bool>;
-using vs = vector<string>;
-using vd = vector<double>;
-using vll = vector<ll>;
-using vpii = vector<pii>;
-using vpll = vector<pll>;
 using vvi = vector<vi>;
-using vvb = vector<vb>;
-using vvll = vector<vll>;
-using vvpii = vector<vpii>;
-using vvpll = vector<vpll>;
-using vvs = vector<vs>;
 
 int main(){
     ios_base::sync_with_stdio(false);
@@ -43,7 +25,7 @@ int main(){
         for(int j=2;j<=m;j++){
             r[i][j] = max(r[i][j-1],d[i-1][j])+d[i][j];
         }
-        
+
         l[i][m] = d[i-1][m]+d[i][m];
         for(int j=m-1;j>=0;j--){
             l[i][j] = max(l[i][j+1],d[i-1][j])+d[i][j];
