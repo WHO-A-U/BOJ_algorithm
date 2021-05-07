@@ -63,22 +63,3 @@ int main(){
     cout<<answer;
 }
 
-
-// baekjoononlinejudge
-// startlink
-// codeplus
-// sundaycoding
-// codingsh
-
-
-// baekjoon !
-// codeplus !
-// codeminus
-// startlink !
-// starlink 
-// sundaycoding !
-// codingsh !
-// codinghs
-// sondaycoding
-// startrink
-// icerink
