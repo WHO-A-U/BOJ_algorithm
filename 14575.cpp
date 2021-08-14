@@ -11,17 +11,17 @@ int isPossible(int s){
 
     for(int i=0;i<n;i++){
         if( s < d[i][0])
-            return 1; //  s를 올려야함
+            return 1; 
         
         minSum+=d[i][0];
         restSum += min(s,d[i][1]);
     }
     if(minSum <= t && t <=restSum){
-        return 0; //s 를 내려봐도됨 일단 정답
+        return 0; 
     }else if(restSum < t){
-        // s 를 올려야함
+      
         return 1;
-    }else{ // minSum > t
+    }else{ 
         return -1;
     }
 }
@@ -45,11 +45,9 @@ int main(){
         mid = (l+r)/2;
         
         int flag = isPossible(mid);
-        // printf("l : %d r : %d mid : %d flag = %d\n",l,r,mid,flag);
         if( flag == 0 ){
             ans = min(ans , mid);
             r = mid - 1;
-
         }else{
             l = mid + 1;
         }
